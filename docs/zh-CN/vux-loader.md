@@ -275,6 +275,17 @@ import { Group, Cell } from 'vux'
 
 #### i18n
 
+<p class="warning">
+请使用正确的 yml 格式。冒号和值之间是有一个空格的，错误的格式将无法生效。
+</p>
+
+``` yml
+on-show:
+  en: emits when popup shows
+  zh-CN: 弹窗显示时触发
+```
+
+
 1. 如果你只是调用中文语言的vux组件，那么你不需要做任何配置。
 
 2. 如果你需要调用英文语言的vux组件，需要配置语言
@@ -300,7 +311,7 @@ import { Group, Cell } from 'vux'
 
 然后你就可以引用`vuex-i18n`插件实现多语言切换了。
 
-参考 [main.js](https://github.com/airyland/vux/blob/v2/src/main.js#L84-L96) 及 [vuex-i18n 文档](https://www.npmjs.com/package/vuex-i18n)(仅当参考，你也可以使用其他i18n插件)。
+参考 [main.js](https://github.com/airyland/vux/blob/254574ef30a8c4d341feb7d2ff8245792657bda2/src/main.js#L84-L96) 及 [vuex-i18n 文档](https://www.npmjs.com/package/vuex-i18n)(仅当参考，你也可以使用其他i18n插件)。
 
 #### less-theme
 

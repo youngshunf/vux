@@ -1,8 +1,12 @@
 <template>
   <div>
     <group>
-      <calendar v-model="demo1" :title="$t('Basic Usage')" disable-past placeholder="placeholder" @on-show="log('show')" @on-hide="log('hide')"></calendar>
+      <calendar :readonly="readonly" v-model="demo1" :title="$t('Basic Usage')" disable-past placeholder="placeholder" @on-show="log('show')" @on-hide="log('hide')"></calendar>
     </group>
+
+    <div style="padding:15px;">
+      <x-button type="primary" @click.native="readonly = !readonly">{{ $t('Toggle readonly') }}</x-button>
+    </div>
 
     <group>
       <calendar v-model="demo2" :title="$t('Set value as TODAY')" disable-past></calendar>
@@ -21,7 +25,7 @@
     </group>
 
      <group>
-      <calendar :display-format="displayFormat" :placeholder="$t('Please select')" @on-change="onChange" v-model="demo6" :title="$t('Format multiple dates')" :popup-header-title="$t('please select')" disable-future></calendar>
+      <calendar disable-weekend :display-format="displayFormat" :placeholder="$t('Please select')" @on-change="onChange" v-model="demo6" :title="$t('Format multiple dates')" :popup-header-title="$t('please select')"></calendar>
       <cell-box align-items="flex-start">
         <span class="selected-days">value:</span>
         <div>
@@ -29,6 +33,9 @@
         </div>
       </cell-box>
     </group>
+    <div style="padding:15px;">
+      <x-button type="primary" @click.native="demo6 = []">{{ $t('Empty value') }}</x-button>
+    </div>
   </div>
 </template>
 
@@ -47,10 +54,14 @@ Multiple dates:
   zh-CN: 多选
 Format multiple dates:
   zh-CN: 格式化表单值
+Empty value:
+  zh-CN: 清空值
+Toggle readonly:
+  zh-CN: 切换 readonly
 </i18n>
 
 <script>
-import { Group, Calendar, Cell, Badge, CellBox } from 'vux'
+import { Group, Calendar, Cell, Badge, CellBox, XButton } from 'vux'
 
 export default {
   components: {
@@ -58,10 +69,12 @@ export default {
     Group,
     Cell,
     Badge,
-    CellBox
+    CellBox,
+    XButton
   },
   data () {
     return {
+      readonly: false,
       demo1: '',
       demo2: 'TODAY',
       demo3: 'TODAY',
